@@ -77,7 +77,7 @@ function App() {
   useEffect(() => {
     async function fetchQuestions() {
       try {
-        const response = await fetch("/api/questions");
+        const response = await fetch("http://localhost:3001/questions");
         const data = await response.json();
         dispatch({ type: "dataRecieved", payload: data });
       } catch (error) {
