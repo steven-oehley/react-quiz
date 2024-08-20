@@ -134,6 +134,111 @@
       ],
       "correctOption": 3,
       "points": 20
+    },
+    {
+      "question": "Which method is used to create a new React element?",
+      "options": [
+        "React.createElement",
+        "React.buildElement",
+        "React.createComponent",
+        "React.buildComponent"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the purpose of React keys in lists?",
+      "options": [
+        "To uniquely identify elements",
+        "To bind events",
+        "To enhance performance",
+        "To manage state"
+      ],
+      "correctOption": 0,
+      "points": 20
+    },
+    {
+      "question": "How can you avoid excessive re-renders in React?",
+      "options": [
+        "By using React.memo",
+        "By using inline functions",
+        "By using setState",
+        "By passing callbacks"
+      ],
+      "correctOption": 0,
+      "points": 20
+    },
+    {
+      "question": "Which hook should you use to handle complex state logic?",
+      "options": ["useState", "useEffect", "useContext", "useReducer"],
+      "correctOption": 3,
+      "points": 30
+    },
+    {
+      "question": "How can you improve performance in a large React application?",
+      "options": [
+        "By avoiding conditional rendering",
+        "By using dynamic imports",
+        "By writing inline styles",
+        "By disabling hooks"
+      ],
+      "correctOption": 1,
+      "points": 30
+    },
+    {
+      "question": "What does the useCallback hook do?",
+      "options": [
+        "Memoizes a value",
+        "Memoizes a function",
+        "Triggers a re-render",
+        "Updates state"
+      ],
+      "correctOption": 1,
+      "points": 20
+    },
+    {
+      "question": "Which React lifecycle method is equivalent to useEffect with an empty dependency array?",
+      "options": [
+        "componentDidMount",
+        "componentDidUpdate",
+        "componentWillUnmount",
+        "shouldComponentUpdate"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the use of the useRef hook?",
+      "options": [
+        "To manage focus",
+        "To persist values",
+        "To trigger re-renders",
+        "To manage timers"
+      ],
+      "correctOption": 1,
+      "points": 20
+    },
+    {
+      "question": "What is the virtual DOM in React?",
+      "options": [
+        "A real representation of the DOM",
+        "A copy of the DOM tree in the memory",
+        "An API to manipulate the DOM",
+        "A method to render components"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "How do you handle forms in React?",
+      "options": [
+        "Using form handlers",
+        "Using event handlers",
+        "Using controlled components",
+        "Using uncontrolled components"
+      ],
+      "correctOption": 2,
+      "points": 30
     }
   ]
 }
