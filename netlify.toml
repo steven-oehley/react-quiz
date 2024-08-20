@@ -1,0 +1,9 @@
+[build]
+  functions = "netlify/functions"
+  command = "npm run build"
+  publish = "build"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
