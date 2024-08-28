@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect } from "react";
 
 import Header from "./components/Header";
 import Main from "./components/Main";
@@ -9,70 +9,12 @@ import Question from "./components/Question";
 import Progress from "./components/Progress";
 import FinishScreen from "./components/FinishScreen";
 import Footer from "./components/Footer";
+import { useQuestions } from "./context/QuestionContext";
 
 // declare outside as never need to change with renders
 
-const initalState = {
-  questions: [],
-  appStatus: "loading", // status of application - loading, error, ready, active, finished};
-  questionIndex: 0,
-  answer: null,
-  points: 0,
-};
-
-function reducer(state, action) {
-  const { type, payload } = action;
-
-  switch (type) {
-    case "dataRecieved":
-      return { ...state, questions: payload, appStatus: "ready" };
-    case "dataFailed":
-      return { ...state, appStatus: "error" };
-    case "startQuiz":
-      return { ...state, appStatus: "active" };
-    case "newAnswer":
-      const question = state.questions[state.questionIndex];
-      const { correctOption, points } = question;
-      const isCorrect = correctOption === payload;
-      return {
-        ...state,
-        answer: payload,
-        points: isCorrect ? state.points + points : state.points,
-      };
-    case "nextQuestion":
-      return {
-        ...state,
-        questionIndex: state.questionIndex + 1,
-        answer: null,
-      };
-    case "finishedQuiz":
-      return {
-        ...state,
-        appStatus: "finished",
-      };
-    case "restart":
-      return {
-        ...initalState,
-        appStatus: "ready",
-        questions: state.questions, // Preserve questions
-      };
-    default:
-      throw new Error(
-        "Dispatch action unknown, must be one of - loading, error, ready, active, finished"
-      );
-  }
-}
-
 function App() {
-  const [{ questions, appStatus, questionIndex, answer, points }, dispatch] =
-    useReducer(reducer, initalState);
-
-  const totalPoints = questions.reduce(
-    (sum, question) => sum + question.points,
-    0
-  );
-
-  const numQuestions = questions.length;
+  const { appStatus, questionIndex, numQuestions, dispatch } = useQuestions();
 
   useEffect(() => {
     async function fetchQuestions() {
@@ -86,7 +28,7 @@ function App() {
     }
 
     fetchQuestions();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="app">
@@ -94,41 +36,17 @@ function App() {
       <Main>
         {appStatus === "loading" && <Loader />}
         {appStatus === "error" && <Error />}
-        {appStatus === "ready" && (
-          <StartScreen dispatch={dispatch} numQuestions={questions.length} />
-        )}
+        {appStatus === "ready" && <StartScreen />}
         {appStatus === "active" && questionIndex < numQuestions && (
           <>
-            <Progress
-              index={questionIndex}
-              numQuestions={questions.length}
-              totalPoints={totalPoints}
-              points={points}
-            />
+            <Progress />
             <div className="w-2/3 mx-auto mt-16">
-              <Question
-                question={questions[questionIndex]}
-                dispatch={dispatch}
-                answer={answer}
-                numQuestions={numQuestions}
-                questionIndex={questionIndex}
-              />
+              <Question />
             </div>
-            <Footer
-              dispatch={dispatch}
-              answer={answer}
-              numQuestions={numQuestions}
-              questionIndex={questionIndex}
-            />
+            <Footer />
           </>
         )}
-        {appStatus === "finished" && (
-          <FinishScreen
-            points={points}
-            totalPoints={totalPoints}
-            dispatch={dispatch}
-          />
-        )}
+        {appStatus === "finished" && <FinishScreen />}
       </Main>
     </div>
   );

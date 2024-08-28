@@ -1,11 +1,10 @@
-function Options({
-  options,
-  correctOption,
-  dispatch,
-  answer,
-  questionIndex,
-  numQuestions,
-}) {
+import { useQuestions } from "../context/QuestionContext";
+
+function Options() {
+  const { questions, questionIndex, dispatch, answer } = useQuestions();
+  const options = questions[questionIndex].options;
+  const correctOption = questions[questionIndex].correctOption;
+
   const hasAnswer = answer !== null;
 
   return (

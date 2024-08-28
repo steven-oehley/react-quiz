@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useQuestions } from "../context/QuestionContext";
 
-function Timer({ dispatch }) {
+function Timer() {
+  const { dispatch } = useQuestions();
   const [time, setTime] = useState(600); // 300 seconds = 5 minutes
 
   useEffect(() => {

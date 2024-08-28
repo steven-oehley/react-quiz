@@ -1,4 +1,7 @@
-function Progress({ index, numQuestions, points, totalPoints }) {
+import { useQuestions } from "../context/QuestionContext";
+
+function Progress() {
+  const { questionIndex, numQuestions, points, totalPoints } = useQuestions();
   return (
     <header>
       <div className="flex items-center justify-center gap-4">
@@ -16,7 +19,9 @@ function Progress({ index, numQuestions, points, totalPoints }) {
           {Array.from({ length: numQuestions }, (_, i) => (
             <li
               key={i}
-              className={`text-xl step ${i <= index ? "step-info" : ""}`}
+              className={`text-xl step ${
+                i <= questionIndex ? "step-info" : ""
+              }`}
             ></li>
           ))}
         </ul>

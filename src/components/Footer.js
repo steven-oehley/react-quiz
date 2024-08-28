@@ -1,16 +1,11 @@
 import NextButton from "./NextButton";
 import Timer from "./Timer";
 
-function Footer({ dispatch, answer, numQuestions, questionIndex }) {
+function Footer() {
   return (
     <footer>
-      <Timer dispatch={dispatch} />
-      <NextButton
-        dispatch={dispatch}
-        answer={answer}
-        numQuestions={numQuestions}
-        questionIndex={questionIndex}
-      />
+      <Timer />
+      <NextButton />
     </footer>
   );
 }
